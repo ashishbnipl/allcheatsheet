@@ -1,0 +1,101 @@
+Kubectl command
+-----------------------
+-----------------------
+default port for API server is <6443>
+watch Kubectl get all   <To watch all pod condution in every 2 sec>
+kubectl get pods --all-namespaces
+Kubectl apply -f file.yml
+Kubectl get nodes                                                          
+Kubectl get pods
+Kubectl describe pod file.yml
+kubectl get pods -o wide
+Kubectl logs -f file.yml     <To check containers details>
+kubectl logs -f pod1         <to check containers process details and log>
+kubectl logs pod1 |grep 404 > /tmp/error
+Kubectl logs -f file -c c001  <To check containers details>
+Kubectl exec testpod -it -c c01 <Go to inside containers>
+kubectl exec --stdin --tty pod1 -/bin/bash    <go to inside containers>
+Kubectl delete pod testpod 
+Kubectl exec testpod
+Kubectl get pods --show-labels       <For labels>
+Kubectl label pods delhipod myname=app1
+ip a       <to check all ip run in master node>
+---
+rplication controller only work on equality based selector and relicaset work on both equality based and set based as well.
+deployment object used to rollout and rollback with this object.
+List pod with  matching label         <equality based =, != and set based labels    env in or notin (dev,prod)>
+Kubectl get pods -l env=develoyment
+Kubectl get pods -l env!=develoyment      <Get pod where develoyment not present>
+Kubectl delete pod -l env!=develoyment
+
+--- You can rollback to specific version by specifying it with  --to--revision=2
+Kubectl rollout undo deploy/mydeployment --to-revision=2
+Kubectl get deploy
+
+--- To scale up and down
+Kubectl scale --replica=1 deploy mydeployment
+Kubectl rollout status develoyment mydeployment
+Kubectl rollout history develoyment mydeployment
+Kubectl rollout undo deploy/mydeployment --to--revision
+Kubectl get rs <To check relicaset>
+set-Alias -name k -value kubectl    <for powershell>
+alias k="kubectl"    <Linux>
+---
+Kubectl get pods -o wide    <For pod details and node ip address>
+Kubectl get svc    <For service details>       for on prem metal LB used 
+Kubectl describe svc demoservice
+Kubectl describe pod pod1   <For pod details>
+Kubectl create configmap mymap --form-file-sameple.conf     <For config map>
+---
+Kubectl get namespace
+kubectl api-resources
+Kubectl config set-context $ (Kubectl config current context) --namespace=dev
+Kubectl apply -f pod.yml -n dev    <Create in dev namespace>
+---
+Kubectl autoscale deployment mydeploy --cpu-percent=20  -min=1 -max=10
+---
+helm lnit      <Linting the chart begore deployment compile your chart>
+helm install --dry-run --debug ./mychart/ --generate-name     <For dry run and see all value of yaml replaced on application run>
+helm install myapp helloworld       <release name then chart name>
+helm repo list 
+helm repo add <name>  <url>
+helm show all chart name     <to see chart details info>
+helm create helloworld
+helm template helloworld      <to see actual filled details>
+rm rf helloworld
+
+---
+Rollout/Rollback   <rolling update strategy>
+
+Kubectl rollout status deployment.yml     <for rollout status>
+Kubectl rollout history deployment.yml     <for rollout history>
+Kubectl rollout undo deployment.yml        <for undo to previous version>
+watch kubectl get all
+kubectl get pods --watch
+---
+service account used for some automation
+cat /etc/resolve.conf
+openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout privateKey.key -out certificate.crt
+
+---
+
+
+
+
+
+
+*‪F:\Docker\Terraform\Understanding Kubernetes Architecture with Diagrams.pdf
+---
+
+
+
+
+
+
+
+
+
+
+
+
+

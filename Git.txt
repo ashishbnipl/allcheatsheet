@@ -1,0 +1,44 @@
+git init
+git status
+git add .
+git rm --cached <file>   to unstage the file from tracked area
+git relog     <used to get recover deleted branch>
+git reset feature1       to unstage the file from tracked area
+git reset .   <all in one go unstage>
+git reset --hard     <delete form working dir and staged area>
+git revert hash id 
+git commit -m "first commit"
+git checkout -f    <match the all file with previous commit> revert the change
+git log    <to check all commit hash id and details>
+git log -p -2    <Last 2 commit log diffrence>
+git diff    <compair stageing area with working dir>
+git diff --staged    <stageing arae with last commit>
+git rm file1   <delete file>
+git status -s   <for short status>
+.gitignore   <add file like *.log,*.cpp>   for ignore
+git branch feature1      <to create feature1 branch>
+git branch -d feature1   <to create and go inside branch>
+git checkout feature1    <switched to branch feature1>
+git merge feature1
+git checkout -b feature2    <create and go inside the branch>
+git config --global.user.name   <name>
+git config --global user.email  <email>
+git config --list
+git clone <ssh link >
+git tag tagname    <for tagging >
+git stash      <to save change made when they are not in a state to commit them to a repository>
+git stash list     <for all stash list>
+git stash clear     <clear all all stash>
+git stash apply stash@{01}     <to apply particular stash>
+git stash pop  <to take back the stash data to current branch>
+git rebase     <this help give context and history for a repository> linear sequence of commit
+git rebase -i HEAD~3        <Git squash all commit and compress in only 3 commit as provided ~3 all history remove only 3 commit is there>
+git revert      <it helps you to roll back to the previous version of the file>
+git cherry-pick "commit hash"      <to pick special commit in current branch>
+merge conflict resolve- edit the code and resolve the code and commit on branch where we need code.
+
+
+
+
+
+

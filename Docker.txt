@@ -1,0 +1,110 @@
+FROM ubuntu
+MAINTAINER Prashansa Kulshrestha
+RUN apt-get update                     <RUN used when building the image>
+RUN apt-get install -y python
+ADD hello.py /home/hello.py             <add used to copy and download file or package form URL as well>
+copy source destination                 <copy used to copy file locally form system >
+ADD a.py /home/a.py
+CMD ["/home/hello.py"]                  <CMD used when creating/running container from image>
+ENTRYPOINT ["python"]                   <can not over write at the run time> instruction apend with argument 
+VOLUME ["/myvolume1"]                   <to create volume from dockerfile>
+---
+
+
+docker build -t pythonimage           <used to build the image from Dockerfile>
+docker run -it --name test1 pythonimage   <used to create container form image>
+docker run -it --name container2 --privileged=true --volumes-from container1 myimg     <to share volume with container>
+docker volume ls
+docker volume create volume1
+docker volume rm volume1
+docker logs cont id                    <for docker container logs to check status>
+docker logs --tail 100 container1       <to see last 100 line process>
+docker logs --since 10 container1       <to see last 10 min process log>   untill is also there
+docker logs container1
+docker container inspect container1    <to see all teh conta details as n/w ip endpoint point and all the details> docker inspect container1
+docker inspect --format={{.logpath}} container1    <to see container log file json file log>
+grep error then log file path to see only error highlighted    for troubleshooting
+docker start container1
+docker stop container1
+docker rm container1                  <to delete container1>
+docker attach container1    <go inside container>
+docker ps -a      <to see all container>
+docker images     <to see all images>
+docker -- version
+docker run -it --name contname imagename
+docker diff container1 imagename
+vi dockerfile     <create image form dockerfile>
+docker build -t myimg .
+docker run -it --name mycont myimg      <create container form image>
+docker run -td  --name container1 -p 80:80 ubuntu       <port mapping>
+docker port container1     <to see container port details>
+docker exec -it container1  /bin/bash  <to go inside container same as attach command>
+env     <inside container to check all the running value>
+service docker start
+docker run -it ubuntu          <create image>
+docker commit container1 myimg       <create image form container1>
+docker login
+docker tag myimg dockerid/newimage     <for tagging> 
+docker pull dockerid/newimage    <pull form dockerhub>
+docker push <docker hub repo name/imagename>
+docker run -it --name container1 dockerid/newimage bin/bash         <bin/bash used to open terminbal as well to inside container>
+docker stop $(docker ps -a -q)     <to stop all container process run as used $ for loop process>
+docker rm $ (docker ps -a -q)    <delete all container>
+docker rmi -f $ (docker images -q)     <delete all container forcefully>
+
+---
+Docker network type
+Bridge n/w - used for default n/w connection b/w container
+host  n/w  - used to access container using host ip only -first access host then you will get container access
+overlay n/w - used to access container over diffrent node.
+macvlan n/w - used to deploy software who needs phisal vn.
+none n/w - no n/w connectivity
+
+---
+
+# Multi-stage build setup (https://docs.docker.com/develop/develop-images/multistage-build/)
+
+# Stage 1 (to create a "build" image, ~140MB)
+FROM openjdk:8-jdk-alpine3.7 AS builder
+RUN java -version
+
+COPY . /usr/src/myapp/
+WORKDIR /usr/src/myapp/
+RUN apk --no-cache add maven && mvn --version
+RUN mvn package
+
+# Stage 2 (to create a downsized "container executable", ~87MB)
+FROM openjdk:8-jre-alpine3.7
+WORKDIR /root/
+COPY --from=builder /usr/src/myapp/target/app.jar .
+
+EXPOSE 8123
+ENTRYPOINT ["java", "-jar", "./app.jar"]
+
+---
+https://www.middlewareinventory.com/blog/docker-tomcat-example-dockerfile-sample/
+FROM centos
+
+MAINTAINER aksarav@middlewareinventory.com
+
+RUN mkdir /opt/tomcat/
+
+WORKDIR /opt/tomcat
+RUN curl -O https://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.40/bin/apache-tomcat-8.5.40.tar.gz
+RUN tar xvfz apache*.tar.gz
+RUN mv apache-tomcat-8.5.40/* /opt/tomcat/.
+RUN yum -y install java
+RUN java -version
+
+WORKDIR /opt/tomcat/webapps
+RUN curl -O -L https://github.com/AKSarav/SampleWebApp/raw/master/dist/SampleWebApp.war
+
+EXPOSE 8080
+
+CMD ["/opt/tomcat/bin/catalina.sh", "run"]
+
+
+
+
+
+

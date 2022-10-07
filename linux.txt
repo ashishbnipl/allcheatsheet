@@ -1,0 +1,61 @@
+chmod   777 D1      <used to change the file access>    7-owner 7-group  7-other permission
+chown          <change the owner of the file>
+chgrp          <change the group of file and dir>
+R-4
+W-2
+X-1
+ls-l       <to see all the permission>
+free       <to check memory space>
+vmstat -a  <to check memory and cpu space utilization>
+df -h       <to check all file disk space>  df -sh 
+du -h       <to check all dir disk space>   du -sh
+ssh-keygen  -t rsa   <for >
+ps          <to see all the process running>
+ps -e        <to view all process running in the system>
+ps -ef       <full command line of running process>
+ps -eaf      <full command line of running process with more details>
+uname -a     <to check current machine property>
+IIS server default port-80
+http default port-80
+https default port-443
+RDP    default port 3389     <TCP protocal>
+ssh    default port 22
+---
+curl      <to use file txr and URL as well>
+
+vi,vim,cat,touch   <used for file creation>
+touch file -{1..10}.txt
+chmod    <used for permission assignment>
+pwd      <for current working DIR>
+cd ../../..    exit dir
+mkdir d1 d2 d3     <create in one go dir>
+touch .file1   <create hidden file wit dot>
+ls -a   <to see all file as well as hidden>
+cp file1 file2   <copy file>
+mv file1 d2      <move file>
+rmdir d1     <delete dir>
+rmdir -p     <delete parent dir as well>
+rmdir -pv    <delete all content>
+rm -rf        <delete dir>
+rm -rp
+rm -r
+
+ip toll
+ifconfig      <for ip check>
+ifconfig -a   <to see all the interface>
+netstat -a    <to show both port socket>
+nslookup  google.com      <to check DNS details>
+yum install
+---
+useradd           <to create user>
+groupadd          <to create group>
+gpasswd -a user1 group1      <to add 1 user in group>    
+gpasswd -m u1 u2 u3 group2    <to add multiple user>       
+tar -cvf d3.tar d4    <to zip all file in one> <d3 to d4 from>
+tar -xvf   d3.tar      <to extract>
+gzip     d3.tar    <is used to compress all file>
+gunzip    d3.tar.gz<for unzip>
+wget      <url to download any software or file> 
+
+
+
